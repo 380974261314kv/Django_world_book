@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<h1>{{ object|yesno:"Редактировать, Добавить" }} автора</h1>
+
+<form action="" method="post">
+  {% csrf_token %}
+  <table>
+    {{ form.as_table}}
+  </table>
+  <input class="btn btn-success btn-md" type="submit" value="Сохранить"/>
+</form>
+
+{% endblock %}

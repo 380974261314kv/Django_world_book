@@ -1,0 +1,33 @@
+{% extends 'base_generic.html' %}
+   
+{% block content %}
+
+<h1>Список авторов в БД:</h1><hr>
+<table class="table">
+  <tr>
+  <th>Имя Фамилия</th>
+  <th>Родился</th>
+  <th>Умер</th>
+  <th>Книги</th>
+  <th>Редактировать</th>
+  </tr>
+  {% if author_list%}
+  {% for author in author_list %}
+  <tr>
+    <td><a href="{{ author.get_absolute_url }}">
+      {{ author.first_name }} {{ author.last_name }}</a></td>
+    <td>{{ author.date_of_birth }}</td>
+    <td>{{ author.date_of_death }}</td>
+    <td>{% for book in author.books.all %}{{ book }}<br>{% endfor %}</td>
+    <td>
+      <a style="color:green" href="{% url 'catalog:author-update' author.id %}">
+        Изменить</a>
+    <a href="{% url 'catalog:author-delete' author.id %}">Удалить</a></td>
+  </tr>
+  {% endfor %}
+{% else %}
+<p>В базе данных нет авторов</p>
+{% endif %}
+</table>
+
+{% endblock %}

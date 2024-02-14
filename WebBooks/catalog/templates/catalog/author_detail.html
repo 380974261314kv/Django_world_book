@@ -1,0 +1,26 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+<h1>Автор: {{ author.first_name }} {{ author.last_name }}</h1>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Дата рождения</th>
+        <th>Дата смерти</th>
+        <th>Книги</th>
+    </tr>
+    <tr>
+        <td>{{ author.id }}</td>
+        <td>{{ author.first_name }}</td>
+        <td>{{ author.last_name }}</td>
+        <td>{{ author.date_of_birth }}</td>
+        <td>{{ author.date_of_death }}</td>
+        <td>{% for book in author.books.all %} {{book.title }}<br>{% endfor %}</td>
+    </tr>
+</table>
+
+{% endblock%}
